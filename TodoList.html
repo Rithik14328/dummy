@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #todoList{
+            border: 2px solid black;
+            padding:10px;
+            margin:10px 0px;
+            width:300px;
+            height:300px;
+            border-radius:30px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="newtask"/>
+    <button onclick="addTask()">Add Task</button>
+    <ul id="todoList">
+
+    </ul>
+    <script>
+        var tasks=[];
+        function addTask(){
+            var newtaskElment=document.getElementById("newtask").value;
+            tasks.push(newtaskElment)
+            console.log(tasks)
+            genlist();
+        }
+        function genlist(){
+            document.getElementById("todoList").innerHTML=''
+                tasks.forEach(function(a,i){
+                var newLi=document.createElement("li");
+                newLi.innerHTML=a
+                var btn=document.createElement("button")
+                btn.innerHTML="Delete"
+                btn.onclick=function (){
+                    tasks.splice(i,1);
+                    genlist()
+                }
+                newLi.appendChild(btn)
+                document.getElementById("todoList").appendChild(newLi)
+
+            } )
+   
+            }
+  
+        genlist()
+
+    </script>
+    
+</body>
+</html>
